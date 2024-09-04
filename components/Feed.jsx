@@ -37,6 +37,10 @@ const Feed = () => {
     fetchPosts();
   }, []);
 
+  const refreshPosts = () => {
+    fetchPosts();
+  };
+
   const filterPrompts = (searchtext) => {
     const regex = new RegExp(searchtext, "i"); // 'i' flag for case-insensitive search
     return allPosts.filter(
@@ -85,9 +89,10 @@ const Feed = () => {
         <PromptCardList
           data={searchedResults}
           handleTagClick={handleTagClick}
+
         />
       ) : (
-        <PromptCardList data={allPosts} handleTagClick={handleTagClick} />
+        <PromptCardList data={allPosts} handleTagClick={handleTagClick} refreshPosts={refreshPosts} />
       )}
     </section>
   );
